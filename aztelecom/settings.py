@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '04d8ug)r&h1w1b^77+xlgr4#q+f1e6-bizp8w1-yn$75hn3$fr'
+SECRET_KEY = '2ewpmv8d+=+w!7ivbgx)pylbzt+vx^up!gy01c7-c-ask&zz15'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'webapi',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'aztelecom.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'telecom',
+        'USER': 'root',
+        'PASSWORD': 'q1w2e3r4',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
