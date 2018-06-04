@@ -6,8 +6,14 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
-
+from datetime import datetime
 from django.db import models
+
+# class ConvertingDateTimeField(models.DateTimeField):
+
+#     def get_prep_value(self, value):
+
+#         return str(datetime.strptime(str(value), '%Y-%m-%d %H:%M:%S'))
 
 class Admin(models.Model):
     ad = models.CharField(max_length=50)

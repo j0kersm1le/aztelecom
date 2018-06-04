@@ -5,9 +5,12 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from models import Ivr
 from serializers import IvrSerializer
+from datetime import date
 
 # Create your views here.
 
 class ivrViewSet(viewsets.ModelViewSet):
-    queryset = Ivr.objects.all()
+    today = date.today()
+    queryset=Ivr.objects.filter(tarix__year=today.year,tarix__month=today.month)
+    print(today)
     serializer_class = IvrSerializer
