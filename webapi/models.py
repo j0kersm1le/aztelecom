@@ -44,130 +44,12 @@ class HellOlan(models.Model):
         managed = False
         db_table = 'hell_olan'
 
-
-class Icracilar(models.Model):
-    isci_haqqinda = models.ForeignKey('IsciHaqqinda', models.DO_NOTHING)
-    erazisi = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'icracilar'
-
-
-class IcradaOlanlar(models.Model):
-    kadr_adi = models.CharField(max_length=50)
-    ivr = models.ForeignKey('Ivr', models.DO_NOTHING)
-    ats = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'icrada_olanlar'
-
-
 class Idareler(models.Model):
     idare_adi = models.CharField(max_length=50)
 
     class Meta:
         managed = False
         db_table = 'idareler'
-
-
-class IsciHaqqinda(models.Model):
-    ad = models.CharField(max_length=50)
-    soyad = models.CharField(max_length=50)
-    ata_adi = models.CharField(max_length=50)
-    doguldugu_tarix = models.CharField(max_length=50)
-    unvan = models.CharField(max_length=50)
-    vetendasliq = models.CharField(max_length=50)
-    herbi = models.CharField(max_length=50)
-    isden_cixis_sebebi = models.CharField(max_length=1500)
-    sehadetname = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    telefon = models.CharField(max_length=50)
-    mobil = models.CharField(max_length=50)
-    son_is = models.CharField(max_length=1500)
-    is_telefonu = models.CharField(max_length=50)
-    daxili_nomre = models.CharField(max_length=50)
-    sobe = models.ForeignKey('Sobeler', models.DO_NOTHING)
-    vezife = models.ForeignKey('Vezifeler', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'isci_haqqinda'
-
-
-class IslemeHuquqOlanlar(models.Model):
-    istifadeci_adi = models.CharField(primary_key=True, max_length=50)
-    sifre = models.CharField(max_length=50)
-    isci = models.ForeignKey(IsciHaqqinda, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'isleme_huquq_olanlar'
-
-
-class Ivr(models.Model):
-    
-    full_name = models.CharField(max_length=50, blank=True, null=True)
-    zeng_eden = models.CharField(max_length=50, blank=True, null=True)
-    menbe = models.CharField(max_length=50, blank=True, null=True)
-    abonent_kodu = models.CharField(max_length=50, blank=True, null=True)
-    sobe = models.ForeignKey('Sobeler', models.DO_NOTHING, blank=True, null=True)
-    shikayet_katigoriya = models.CharField(max_length=50, blank=True, null=True)
-    xususi_qeyd = models.CharField(max_length=1000, blank=True, null=True)
-    operator = models.CharField(max_length=50, blank=True, null=True)
-    tarix = models.DateTimeField(blank=True, null=True)
-    status = models.CharField(max_length=255, blank=True, null=True)
-    hal = models.CharField(max_length=50, blank=True, null=True)
-    gonderilen_sexs = models.CharField(max_length=150, blank=True, null=True)
-
-    class Meta:
-        db_table = 'ivr'
-
-
-class IvrOld(models.Model):
-    full_name = models.CharField(max_length=50, blank=True, null=True)
-    zeng_eden = models.CharField(max_length=50, blank=True, null=True)
-    menbe = models.CharField(max_length=50, blank=True, null=True)
-    abonent_kodu = models.CharField(max_length=50, blank=True, null=True)
-    sobe_id = models.IntegerField(blank=True, null=True)
-    shikayet_katigoriya = models.CharField(max_length=50, blank=True, null=True)
-    xususi_qeyd = models.CharField(max_length=1500, blank=True, null=True)
-    operator = models.CharField(max_length=50, blank=True, null=True)
-    tarix = models.CharField(max_length=255, blank=True, null=True)
-    status = models.CharField(max_length=255, blank=True, null=True)
-    hal = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'ivr_old'
-
-
-class Kadrlar(models.Model):
-    ad = models.CharField(max_length=50)
-    soyad = models.CharField(max_length=50)
-    ata_adi = models.CharField(max_length=50)
-    vezife = models.ForeignKey('Vezifeler', models.DO_NOTHING)
-    email = models.CharField(max_length=50)
-    telefon = models.CharField(max_length=50)
-    telefon2 = models.CharField(max_length=50)
-    daxili_nomre = models.CharField(max_length=50)
-    sobe = models.ForeignKey('Sobeler', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'kadrlar'
-
-
-class Mezuniyyet(models.Model):
-    sobe = models.ForeignKey('Sobeler', models.DO_NOTHING)
-    vezife = models.ForeignKey('Vezifeler', models.DO_NOTHING)
-    mezuniyyet_muddeti = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'mezuniyyet'
-
 
 class ProbleminKodu(models.Model):
     problemin_kodu = models.IntegerField(primary_key=True)
@@ -193,8 +75,8 @@ class Sobeler(models.Model):
     class Meta:
         managed = False
         db_table = 'sobeler'
-
-
+        
+        
 class Vezifeler(models.Model):
     vezife = models.CharField(max_length=50)
     sobe = models.ForeignKey(Sobeler, models.DO_NOTHING)
@@ -203,6 +85,30 @@ class Vezifeler(models.Model):
         managed = False
         db_table = 'vezifeler'
 
+class Kadrlar(models.Model):
+    ad = models.CharField(max_length=50)
+    soyad = models.CharField(max_length=50)
+    ata_adi = models.CharField(max_length=50)
+    vezife = models.ForeignKey(Vezifeler, models.DO_NOTHING)
+    email = models.CharField(max_length=50)
+    telefon = models.CharField(max_length=50)
+    telefon2 = models.CharField(max_length=50)
+    daxili_nomre = models.CharField(max_length=50)
+    sobe = models.ForeignKey(Sobeler, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'kadrlar'
+
+
+class Mezuniyyet(models.Model):
+    sobe = models.ForeignKey(Sobeler, models.DO_NOTHING)
+    vezife = models.ForeignKey(Vezifeler, models.DO_NOTHING)
+    mezuniyyet_muddeti = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'mezuniyyet'
 
 class YeniQosulma(models.Model):
     sifarisci = models.CharField(max_length=50)
@@ -214,3 +120,73 @@ class YeniQosulma(models.Model):
     class Meta:
         managed = False
         db_table = 'yeni_qosulma'
+
+class Ivr(models.Model):
+    
+    full_name = models.CharField(max_length=50, blank=True, null=True)
+    zeng_eden = models.CharField(max_length=50, blank=True, null=True)
+    menbe = models.CharField(max_length=50, blank=True, null=True)
+    abonent_kodu = models.CharField(max_length=50, blank=True, null=True)
+    sobe = models.ForeignKey(Sobeler, models.DO_NOTHING, blank=True, null=True)
+    shikayet_katigoriya = models.CharField(max_length=50, blank=True, null=True)
+    xususi_qeyd = models.CharField(max_length=1000, blank=True, null=True)
+    operator = models.CharField(max_length=50, blank=True, null=True)
+    tarix = models.DateTimeField(blank=True, null=True)
+    status = models.CharField(max_length=255, blank=True, null=True)
+    hal = models.CharField(max_length=50, blank=True, null=True)
+    gonderilen_sexs = models.CharField(max_length=150, blank=True, null=True)
+
+    class Meta:
+        db_table = 'ivr'
+
+
+class IcradaOlanlar(models.Model):
+    kadr_adi = models.CharField(max_length=50)
+    ivr = models.ForeignKey(Ivr, models.DO_NOTHING)
+    ats = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'icrada_olanlar'
+
+class IsciHaqqinda(models.Model):
+    ad = models.CharField(max_length=50)
+    soyad = models.CharField(max_length=50)
+    ata_adi = models.CharField(max_length=50)
+    doguldugu_tarix = models.CharField(max_length=50)
+    unvan = models.CharField(max_length=50)
+    vetendasliq = models.CharField(max_length=50)
+    herbi = models.CharField(max_length=50)
+    isden_cixis_sebebi = models.CharField(max_length=1500)
+    sehadetname = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    telefon = models.CharField(max_length=50)
+    mobil = models.CharField(max_length=50)
+    son_is = models.CharField(max_length=1500)
+    is_telefonu = models.CharField(max_length=50)
+    daxili_nomre = models.CharField(max_length=50)
+    sobe = models.ForeignKey(Sobeler, models.DO_NOTHING)
+    vezife = models.ForeignKey(Vezifeler, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'isci_haqqinda'
+
+class Icracilar(models.Model):
+    isci_haqqinda = models.ForeignKey(IsciHaqqinda, models.DO_NOTHING)
+    erazisi = models.CharField(max_length=100)
+    
+    class Meta:
+        managed = False
+        db_table = 'icracilar'
+
+
+
+class IslemeHuquqOlanlar(models.Model):
+    istifadeci_adi = models.CharField(primary_key=True, max_length=50)
+    sifre = models.CharField(max_length=50)
+    isci = models.ForeignKey(IsciHaqqinda, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'isleme_huquq_olanlar'
